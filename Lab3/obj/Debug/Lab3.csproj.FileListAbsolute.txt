@@ -1,0 +1,9 @@
+C:\Users\cheby\RiderProjects\Lab3\Lab3\bin\Debug\Lab3.exe
+C:\Users\cheby\RiderProjects\Lab3\Lab3\bin\Debug\Lab3.pdb
+C:\Users\cheby\RiderProjects\Lab3\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
+C:\Users\cheby\RiderProjects\Lab3\Lab3\obj\Debug\Lab3.csproj.CoreCompileInputs.cache
+C:\Users\cheby\RiderProjects\Lab3\Lab3\obj\Debug\Lab3.exe
+C:\Users\cheby\RiderProjects\Lab3\Lab3\obj\Debug\Lab3.pdb
+C:\Users\cheby\RiderProjects\Lab3\Lab3\bin\Debug\nunit.framework.dll
+C:\Users\cheby\RiderProjects\Lab3\Lab3\bin\Debug\nunit.framework.xml
+C:\Users\cheby\RiderProjects\Lab3\Lab3\obj\Debug\Lab3.csproj.CopyComplete
