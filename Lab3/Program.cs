@@ -1,32 +1,30 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.Remoting.Lifetime;
 
 namespace Lab3
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            for (int i = 1; i < 15; i++)
-            {
-                var m = new Matrix(i);
-                var det = m.GetDeterminant();
-                Console.WriteLine(Matrix.Count);
-            }
+            Client();
         }
 
-        public void client()
+        private static void Client()
         {
             Console.WriteLine("Введите размер квадратной матрицы A: ");
             int n;
             try
             {
                 n = Convert.ToInt32(Console.ReadLine());
+                if (n < 0)
+                    throw new Exception();
             }
             catch (Exception)
             {
                 Console.WriteLine("Размер матрицы должен быть целым положительным числом");
-                throw;
+                return;
             }
 
             var data = new double[n, n];
@@ -45,11 +43,20 @@ namespace Lab3
             catch (Exception)
             {
                 Console.WriteLine("Возможно, вы неправильно ввели матрицу");
-                throw;
+                return;
             }
 
             Console.WriteLine("Введите через пробел элементы вектора B");
-            var b = (double[]) Console.ReadLine()?.Split(' ').Select(t => Convert.ToDouble(t));
+            double[] b;
+            try
+            {
+                b = Console.ReadLine()?.Split(' ').Select(Convert.ToDouble).ToArray();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Возможно, вы неправильно ввели вектор B");
+                return;
+            }
 
             var a = new Matrix(data);
             var cramer = new CramersRule();
@@ -59,12 +66,15 @@ namespace Lab3
                 var result = cramer.Solution;
                 Console.Write("X = ");
                 Console.Write("(");
-                foreach (var e in result)
+
+                for (var i = 0; i < result.Length; i++)
                 {
-                    Console.Write(e + " ");
+                    Console.Write(result[i]);
+                    if (i != result.Length - 1)
+                        Console.Write(" ");
                 }
 
-                Console.Write(")");
+                Console.WriteLine(")");
             }
             else if (cramer.IsEndlessSolution)
             {
@@ -74,6 +84,8 @@ namespace Lab3
             {
                 Console.WriteLine("СЛАУ не имеет решений");
             }
+
+            Console.ReadLine();
         }
     }
 }

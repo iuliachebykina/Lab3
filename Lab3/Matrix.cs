@@ -15,15 +15,25 @@ namespace Lab3
 
         public Matrix(int m, int n)
         {
+            if (m < 0 || n < 0)
+            {
+                throw new ArgumentException("N and M must be positive integer");
+            }
             M = m;
             N = n;
+            
             Data = new double[m, n];
         }
 
         public Matrix(int n)
         {
+            if (n < 0)
+            {
+                throw new ArgumentException("N and M must be positive integer");
+            }
             M = n;
             N = n;
+            
             Data = new double[n, n];
         }
 

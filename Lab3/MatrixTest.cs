@@ -27,6 +27,30 @@ namespace Lab3
         }
 
         [Test]
+        public void TestWrongSizeOnSquareMatrix()
+        {
+            var exception = Assert.Throws<ArgumentException>(() => { new Matrix(-5); });
+            if (exception != null)
+                Assert.AreEqual("N and M must be positive integer", exception.Message);
+        }
+
+        [Test]
+        public void TestWrongSizeOnNonSquareMatrix()
+        {
+            var exception1 = Assert.Throws<ArgumentException>(() => { new Matrix(-5, -3); });
+            if (exception1 != null)
+                Assert.AreEqual("N and M must be positive integer", exception1.Message);
+
+            var exception2 = Assert.Throws<ArgumentException>(() => { new Matrix(-5, 2); });
+            if (exception2 != null)
+                Assert.AreEqual("N and M must be positive integer", exception2.Message);
+
+            var exception3 = Assert.Throws<ArgumentException>(() => { new Matrix(5, -2); });
+            if (exception3 != null)
+                Assert.AreEqual("N and M must be positive integer", exception3.Message);
+        }
+
+        [Test]
         public void TestMatrixDataConstructor()
         {
             var data = new double[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
@@ -104,8 +128,5 @@ namespace Lab3
             m[2, 2] = 123456789;
             Assert.AreNotEqual(m.Data, copy.Data);
         }
-
-
-        
     }
 }
