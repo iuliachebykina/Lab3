@@ -18,7 +18,7 @@ namespace Lab3
             try
             {
                 n = Convert.ToInt32(Console.ReadLine());
-                if (n < 0)
+                if (n <= 0)
                     throw new Exception();
             }
             catch (Exception)

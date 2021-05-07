@@ -10,30 +10,32 @@ namespace Lab3
 
         public int N { get; }
 
-        public static double Count { get; private set; }
+        public static long Count { get; private set; }
 
 
         public Matrix(int m, int n)
         {
-            if (m < 0 || n < 0)
+            if (m <= 0 || n <= 0)
             {
-                throw new ArgumentException("N and M must be positive integer");
+                throw new ArgumentException("N and M must be positive integers");
             }
+
             M = m;
             N = n;
-            
+
             Data = new double[m, n];
         }
 
         public Matrix(int n)
         {
-            if (n < 0)
+            if (n <= 0)
             {
-                throw new ArgumentException("N and M must be positive integer");
+                throw new ArgumentException("N must be positive integer");
             }
+
             M = n;
             N = n;
-            
+
             Data = new double[n, n];
         }
 
@@ -78,8 +80,6 @@ namespace Lab3
             return m;
         }
 
-        
-
         public override string ToString()
         {
             var str = "";
@@ -108,8 +108,7 @@ namespace Lab3
             ProcessFunctionOverData((i, j) => newM[i, j] = Data[i, j]);
             return newM;
         }
-
-
+        
         public double GetDeterminant()
         {
             if (!IsSquare)

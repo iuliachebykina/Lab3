@@ -7,7 +7,7 @@ namespace Lab3
     public class MatrixTest
     {
         [Test]
-        public void TestEmptyMatrixConstructor()
+        public void TestMatrixConstructor()
         {
             var m = new Matrix(10, 20);
             var s = new double[10, 20];
@@ -17,7 +17,7 @@ namespace Lab3
         }
 
         [Test]
-        public void TestEmptySquareMatrixConstructor()
+        public void TestSquareMatrixConstructor()
         {
             var m = new Matrix(10);
             var s = new double[10, 10];
@@ -27,11 +27,22 @@ namespace Lab3
         }
 
         [Test]
+        public void TestConstructorData()
+        {
+            var data = new double[,] {{1, -2, 3}, {4, 0, 6}};
+            var m = new Matrix(data);
+            Assert.AreEqual(data, m.Data);
+            Assert.AreEqual(data.GetLength(0), m.M);
+            Assert.AreEqual(data.GetLength(1), m.N);
+        }
+
+
+        [Test]
         public void TestWrongSizeOnSquareMatrix()
         {
             var exception = Assert.Throws<ArgumentException>(() => { new Matrix(-5); });
             if (exception != null)
-                Assert.AreEqual("N and M must be positive integer", exception.Message);
+                Assert.AreEqual("N must be positive integer", exception.Message);
         }
 
         [Test]
@@ -39,15 +50,15 @@ namespace Lab3
         {
             var exception1 = Assert.Throws<ArgumentException>(() => { new Matrix(-5, -3); });
             if (exception1 != null)
-                Assert.AreEqual("N and M must be positive integer", exception1.Message);
+                Assert.AreEqual("N and M must be positive integers", exception1.Message);
 
             var exception2 = Assert.Throws<ArgumentException>(() => { new Matrix(-5, 2); });
             if (exception2 != null)
-                Assert.AreEqual("N and M must be positive integer", exception2.Message);
+                Assert.AreEqual("N and M must be positive integers", exception2.Message);
 
-            var exception3 = Assert.Throws<ArgumentException>(() => { new Matrix(5, -2); });
+            var exception3 = Assert.Throws<ArgumentException>(() => { new Matrix(0, -2); });
             if (exception3 != null)
-                Assert.AreEqual("N and M must be positive integer", exception3.Message);
+                Assert.AreEqual("N and M must be positive integers", exception3.Message);
         }
 
         [Test]
@@ -79,6 +90,18 @@ namespace Lab3
             Assert.AreEqual(true, m1.IsSquare);
             Assert.AreEqual(false, m2.IsSquare);
         }
+
+        [Test]
+        public void TestCopy()
+        {
+            var data = new double[,] {{1, -2, 3}, {4, 0, 6}, {-7, 8, 9}};
+            var m = new Matrix(data);
+            var copy = m.Copy();
+            Assert.AreEqual(m.Data, copy.Data);
+            m[2, 2] = 123456789;
+            Assert.AreNotEqual(m.Data, copy.Data);
+        }
+
 
         [Test]
         public void TestDeterminant()
@@ -116,17 +139,6 @@ namespace Lab3
             Assert.AreEqual(-2, m2.GetDeterminant());
             var m3 = Matrix.RedhefferMatrix(10);
             Assert.AreEqual(-1, m3.GetDeterminant());
-        }
-
-        [Test]
-        public void TestCopy()
-        {
-            var data = new double[,] {{1, -2, 3}, {4, 0, 6}, {-7, 8, 9}};
-            var m = new Matrix(data);
-            var copy = m.Copy();
-            Assert.AreEqual(m.Data, copy.Data);
-            m[2, 2] = 123456789;
-            Assert.AreNotEqual(m.Data, copy.Data);
         }
     }
 }
