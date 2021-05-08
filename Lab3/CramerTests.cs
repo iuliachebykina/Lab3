@@ -37,6 +37,7 @@ namespace Lab3
             var cramer = new CramersRule();
             cramer.FindSolution(m, answer);
             Assert.True(cramer.IsNoSolution);
+            Assert.True(cramer.Solution == null);
             
         }
         
@@ -49,6 +50,7 @@ namespace Lab3
             var cramer = new CramersRule();
             cramer.FindSolution(m, answer);
             Assert.True(cramer.IsEndlessSolution);
+            Assert.True(cramer.Solution == null);
             
         }
         

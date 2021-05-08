@@ -13,6 +13,7 @@ namespace Lab3
 
         private static void Client()
         {
+            Console.WriteLine("Решение системы линейных уравнений A*x=B методом Крамера");
             Console.WriteLine("Введите размер квадратной матрицы A: ");
             int n;
             try
@@ -24,6 +25,7 @@ namespace Lab3
             catch (Exception)
             {
                 Console.WriteLine("Размер матрицы должен быть целым положительным числом");
+                Console.ReadLine();
                 return;
             }
 
@@ -42,7 +44,8 @@ namespace Lab3
             }
             catch (Exception)
             {
-                Console.WriteLine("Возможно, вы неправильно ввели матрицу");
+                Console.WriteLine("Матрица была введена неправильно");
+                Console.ReadLine();
                 return;
             }
 
@@ -54,7 +57,8 @@ namespace Lab3
             }
             catch (Exception)
             {
-                Console.WriteLine("Возможно, вы неправильно ввели вектор B");
+                Console.WriteLine("Вектор B был введен неправильно");
+                Console.ReadLine();
                 return;
             }
 
@@ -78,11 +82,11 @@ namespace Lab3
             }
             else if (cramer.IsEndlessSolution)
             {
-                Console.WriteLine("СЛАУ имеет бесконечно много решений");
+                Console.WriteLine("СЛУ имеет бесконечно много решений");
             }
             else if (cramer.IsNoSolution)
             {
-                Console.WriteLine("СЛАУ не имеет решений");
+                Console.WriteLine("СЛУ не имеет решений");
             }
 
             Console.ReadLine();

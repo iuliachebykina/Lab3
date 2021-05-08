@@ -59,6 +59,11 @@ namespace Lab3
                 for (var i = 0; i < a.N; i++)
                     temp[i, j] = a[i, j];
             }
+
+            if (IsEndlessSolution || IsNoSolution)
+            {
+                Solution = null;
+            }
         }
     }
 }
