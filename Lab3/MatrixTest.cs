@@ -25,16 +25,17 @@ namespace Lab3
             Assert.AreEqual(10, m.N);
             Assert.AreEqual(10, m.M);
         }
-
+        
         [Test]
-        public void TestConstructorData()
+        public void TestMatrixDataConstructor()
         {
-            var data = new double[,] {{1, -2, 3}, {4, 0, 6}};
+            var data = new double[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
             var m = new Matrix(data);
             Assert.AreEqual(data, m.Data);
             Assert.AreEqual(data.GetLength(0), m.M);
             Assert.AreEqual(data.GetLength(1), m.N);
         }
+
 
 
         [Test]
@@ -61,16 +62,7 @@ namespace Lab3
                 Assert.AreEqual("N and M must be positive integers", exception3.Message);
         }
 
-        [Test]
-        public void TestMatrixDataConstructor()
-        {
-            var data = new double[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-            var m = new Matrix(data);
-            Assert.AreEqual(data, m.Data);
-            Assert.AreEqual(3, m.N);
-            Assert.AreEqual(3, m.M);
-        }
-
+        
         [Test]
         public void TestIndex()
         {
